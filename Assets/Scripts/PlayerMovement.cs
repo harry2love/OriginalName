@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Material upMat;
+    public Material baseMat;
     private Rigidbody player;
     private float force = 8;
     private float reducedForce = 4;
     private float upwardForce = 20;
     private bool isGrounded = true;
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -56,6 +60,15 @@ public class PlayerMovement : MonoBehaviour
         {
             player.AddForce(new Vector3(0, 0, -reducedForce));
         }
+
+        if (isGrounded)
+        {
+            GameObject.Find("Player").GetComponent<MeshRenderer>().material = baseMat;
+        }
+        else
+        {
+            GameObject.Find("Player").GetComponent<MeshRenderer>().material = upMat;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -63,6 +76,10 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.name == "Floor")
         {
             isGrounded = true;
+        }
+        if(collision.gameObject.tag == "enemy")
+        {
+            GameObject.Find("GameManager").GetComponent<ScoreManager>().DeductScore(10);
         }
     }
 }

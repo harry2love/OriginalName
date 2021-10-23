@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerAbilities : MonoBehaviour
 {
+    private Rigidbody player;
     public GameObject ability1;
     public GameObject ability2;
 
     private float cooldown = 8;
     private float cooldown2 = 4;
+    private float cooldown3 = 10;
+    private float activeTime3 = 5;
 
     private bool isOnCooldown = false;
     private bool isOnCooldown2 = false;
@@ -17,7 +20,7 @@ public class PlayerAbilities : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -39,10 +42,11 @@ public class PlayerAbilities : MonoBehaviour
             StartCoroutine(AbilityActivity2());
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isOnCooldown3)
         {
 
             isOnCooldown3 = true;
+            StartCoroutine(AbilityActivity3());
         }
     }
 
@@ -61,5 +65,14 @@ public class PlayerAbilities : MonoBehaviour
     {
         yield return new WaitForSeconds(cooldown2);
         isOnCooldown2 = false;
+    }
+    
+    IEnumerator AbilityActivity3()
+    {
+        player.constraints = RigidbodyConstraints.FreezeAll;
+        yield return new WaitForSeconds(activeTime3);
+        player.constraints = ~RigidbodyConstraints.FreezePosition;
+        yield return new WaitForSeconds(cooldown3);
+        isOnCooldown = false;
     }
 }

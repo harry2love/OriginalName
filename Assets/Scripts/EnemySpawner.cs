@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
-    private int maxEnemies = 15;
-    private float cooldownTimer = 3;
+    private int maxEnemies = 5;
+    private float cooldownTimer = 5;
     private bool isOnCooldown = false;
     // Start is called before the first frame update
     void Start()

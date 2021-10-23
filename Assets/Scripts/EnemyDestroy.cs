@@ -24,7 +24,7 @@ public class EnemyDestroy : MonoBehaviour
         if(other.tag == "EnemyKiller")
         {
             Destroy(gameObject);
-            Debug.Log("Collision");
+            GameObject.Find("GameManager").GetComponent<ScoreManager>().AddScore(1);
         }
     }
 }
