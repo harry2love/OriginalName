@@ -28,7 +28,7 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && !abilityIsActive && !isOnCooldown)
         {
-            Instantiate(ability1, transform.position, transform.rotation);
+            Instantiate(ability1, new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
             abilityIsActive = true;
             isOnCooldown = true;
             StartCoroutine(AbilityActivity());
@@ -36,7 +36,7 @@ public class PlayerAbilities : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse1) && !abilityIsActive && !isOnCooldown2)
         {
-            Instantiate(ability2, transform.position, transform.rotation);
+            Instantiate(ability2, new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
             abilityIsActive = true;
             isOnCooldown2 = true;
             StartCoroutine(AbilityActivity2());
