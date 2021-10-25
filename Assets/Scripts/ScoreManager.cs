@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
     private int score = 0;
     private TextMeshProUGUI scoreDisplay;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,12 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         scoreDisplay.text = "Score: " + score;
-        if(score < 0) Destroy(GameObject.Find("Player"));
+        if(score < 0)
+        {
+            Destroy(GameObject.Find("Player"));
+            SceneManager.LoadScene("Scene1");
+        }
+            
     }
 
     public void AddScore(int score)

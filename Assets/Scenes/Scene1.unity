@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 578973764}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upMat: {fileID: 2100000, guid: 68ce691d4ff7fbc49a69ea4d70041034, type: 2}
   baseMat: {fileID: 2100000, guid: 020df55e912f9fb4c9a0ad87c6c734c0, type: 2}
+  abilityActiveMat: {fileID: 2100000, guid: 1e6f407e4d3c4b84fbc265312baab058, type: 2}
 --- !u!114 &578973764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability1: {fileID: 5565904656792161939, guid: a8aa5800077161b45b6732c5581948e4, type: 3}
   ability2: {fileID: 5796689368646635592, guid: 678d05d523a1ec44487d7d401b5f8aef, type: 3}
+  abilityIsActive: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

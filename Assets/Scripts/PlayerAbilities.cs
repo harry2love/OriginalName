@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAbilities : MonoBehaviour
 {
     private Rigidbody player;
+
     public GameObject ability1;
     public GameObject ability2;
 
@@ -16,7 +17,7 @@ public class PlayerAbilities : MonoBehaviour
     private bool isOnCooldown = false;
     private bool isOnCooldown2 = false;
     private bool isOnCooldown3 = false;
-    private bool abilityIsActive = false;
+    public bool abilityIsActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,8 @@ public class PlayerAbilities : MonoBehaviour
             isOnCooldown3 = true;
             StartCoroutine(AbilityActivity3());
         }
+
+        
     }
 
     public void CooldownRemover()

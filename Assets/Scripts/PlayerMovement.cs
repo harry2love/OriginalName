@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Material upMat;
     public Material baseMat;
+    public Material abilityActiveMat;
+
     private Rigidbody player;
+
+    private float boundry = 80;
+    private float yBoundry = 10;
     private float force = 8;
     private float reducedForce = 4;
     private float upwardForce = 20;
+
     private bool isGrounded = true;
     
     // Start is called before the first frame update
@@ -61,14 +68,25 @@ public class PlayerMovement : MonoBehaviour
             player.AddForce(new Vector3(0, 0, -reducedForce));
         }
 
-        if (isGrounded)
+        if(player.transform.position.y < -yBoundry || player.transform.position.x > boundry || player.transform.position.x < -boundry || player.transform.position.z > boundry || player.transform.position.z < -boundry)
+        {
+            SceneManager.LoadScene("Scene1");
+        }
+
+
+        if (isGrounded && !gameObject.GetComponent<PlayerAbilities>().abilityIsActive)
         {
             GameObject.Find("Player").GetComponent<MeshRenderer>().material = baseMat;
         }
-        else
+        else if(!isGrounded && !gameObject.GetComponent<PlayerAbilities>().abilityIsActive)
         {
             GameObject.Find("Player").GetComponent<MeshRenderer>().material = upMat;
         }
+        else if (!isGrounded && gameObject.GetComponent<PlayerAbilities>().abilityIsActive || isGrounded && gameObject.GetComponent<PlayerAbilities>().abilityIsActive)
+        {
+            player.GetComponent<MeshRenderer>().material = abilityActiveMat;
+        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)

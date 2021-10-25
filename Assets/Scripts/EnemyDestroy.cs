@@ -27,4 +27,13 @@ public class EnemyDestroy : MonoBehaviour
             GameObject.Find("GameManager").GetComponent<ScoreManager>().AddScore(1);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            GameObject.Find("GameManager").GetComponent<ScoreManager>().DeductScore(10);
+            Destroy(gameObject);
+        }
+    }
 }
