@@ -56,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnCooldown()
     {
+        maxEnemies = maxEnemies + 5;
         yield return new WaitForSeconds(cooldownTimer);
         isOnCooldown = false;
     }

@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class PlayerAbilities : MonoBehaviour
 {
+
+    private Vector3 spawnLocation;
     private Rigidbody player;
 
     public GameObject ability1;
     public GameObject ability2;
+    public GameObject ability2Marker;
 
     private float cooldown = 8;
-    private float cooldown2 = 4;
+    public float cooldown2 = 4;
     private float cooldown3 = 10;
     private float activeTime3 = 5;
+    public int health = 5;
 
     private bool isOnCooldown = false;
     private bool isOnCooldown2 = false;
     private bool isOnCooldown3 = false;
+    private bool isOnCooldown4 = false;
     public bool abilityIsActive = false;
     // Start is called before the first frame update
     void Start()
@@ -37,7 +42,8 @@ public class PlayerAbilities : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse1) && !abilityIsActive && !isOnCooldown2)
         {
-            Instantiate(ability2, new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
+            spawnLocation = transform.position;
+            Instantiate(ability2Marker, new Vector3(spawnLocation.x, 0.5f, spawnLocation.z), transform.rotation);
             abilityIsActive = true;
             isOnCooldown2 = true;
             StartCoroutine(AbilityActivity2());
@@ -50,7 +56,16 @@ public class PlayerAbilities : MonoBehaviour
             StartCoroutine(AbilityActivity3());
         }
 
-        
+        if(Input.GetKeyDown(KeyCode.F) && abilityIsActive && !isOnCooldown4)
+        {
+
+            abilityIsActive = true;
+            isOnCooldown4 = true;
+            StartCoroutine(AbilityActivity4());
+        }
+
+
+
     }
 
     public void CooldownRemover()
@@ -67,7 +82,9 @@ public class PlayerAbilities : MonoBehaviour
     IEnumerator AbilityActivity2()
     {
         yield return new WaitForSeconds(cooldown2);
+        Instantiate(ability2, new Vector3(spawnLocation.x, 0.5f, spawnLocation.z), transform.rotation);
         isOnCooldown2 = false;
+
     }
     
     IEnumerator AbilityActivity3()
@@ -77,5 +94,10 @@ public class PlayerAbilities : MonoBehaviour
         player.constraints = ~RigidbodyConstraints.FreezePosition;
         yield return new WaitForSeconds(cooldown3);
         isOnCooldown = false;
+    }
+
+    IEnumerator AbilityActivity4()
+    {
+        yield return new WaitForSeconds(10);
     }
 }
