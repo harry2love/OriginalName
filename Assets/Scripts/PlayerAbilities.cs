@@ -11,9 +11,11 @@ public class PlayerAbilities : MonoBehaviour
     public GameObject ability1;
     public GameObject ability2;
     public GameObject ability2Marker;
+    public GameObject ability3;
 
     private float cooldown = 8;
-    public float cooldown2 = 4;
+    private float cooldown2 = 4;
+    public float ability2Wait = 3;
     private float cooldown3 = 10;
     private float activeTime3 = 5;
     public int health = 5;
@@ -44,7 +46,6 @@ public class PlayerAbilities : MonoBehaviour
         {
             spawnLocation = transform.position;
             Instantiate(ability2Marker, new Vector3(spawnLocation.x, 0.5f, spawnLocation.z), transform.rotation);
-            abilityIsActive = true;
             isOnCooldown2 = true;
             StartCoroutine(AbilityActivity2());
         }
@@ -81,8 +82,9 @@ public class PlayerAbilities : MonoBehaviour
 
     IEnumerator AbilityActivity2()
     {
-        yield return new WaitForSeconds(cooldown2);
+        yield return new WaitForSeconds(ability2Wait);
         Instantiate(ability2, new Vector3(spawnLocation.x, 0.5f, spawnLocation.z), transform.rotation);
+        yield return new WaitForSeconds(cooldown2);
         isOnCooldown2 = false;
 
     }
@@ -90,6 +92,8 @@ public class PlayerAbilities : MonoBehaviour
     IEnumerator AbilityActivity3()
     {
         player.constraints = RigidbodyConstraints.FreezeAll;
+        yield return new WaitForSeconds(activeTime3);
+        Instantiate(ability3, transform.position, transform.rotation);
         yield return new WaitForSeconds(activeTime3);
         player.constraints = ~RigidbodyConstraints.FreezePosition;
         yield return new WaitForSeconds(cooldown3);

@@ -18,7 +18,7 @@ public class MarkerRemover : MonoBehaviour
 
     IEnumerator Die()
     {
-        yield return new WaitForSeconds(GameObject.Find("Player").GetComponent<PlayerAbilities>().cooldown2);
+        yield return new WaitForSeconds(GameObject.Find("Player").GetComponent<PlayerAbilities>().ability2Wait);
         Destroy(gameObject);
     }
 }
