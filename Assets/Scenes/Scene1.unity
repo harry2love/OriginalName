@@ -430,7 +430,7 @@ MonoBehaviour:
   ability1: {fileID: 5565904656792161939, guid: a8aa5800077161b45b6732c5581948e4, type: 3}
   ability2: {fileID: 5796689368646635592, guid: 678d05d523a1ec44487d7d401b5f8aef, type: 3}
   ability2Marker: {fileID: 5939016992097964379, guid: e8e7a46468113484a9e1b5136780010e, type: 3}
-  ability3: {fileID: 0}
+  ability3: {fileID: 3396527383827113212, guid: 42d8bff2201b08944818ee34dd13d7d8, type: 3}
   ability2Wait: 3
   health: 5
   abilityIsActive: 0

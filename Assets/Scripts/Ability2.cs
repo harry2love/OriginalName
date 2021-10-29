@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ability2 : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int seconds = 2;
+    private int seconds = 3;
     private float sizeIncrease = 2;
     private Transform player;
     // Start is called before the first frame update

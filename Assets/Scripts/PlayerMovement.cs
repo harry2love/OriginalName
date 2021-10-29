@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float boundry = 80;
     private float yBoundry = 10;
-    private float force = 8;
-    private float reducedForce = 4;
+    private float force = 12;
+    private float reducedForce = 8;
     private float upwardForce = 20;
 
     private bool isGrounded = true;
@@ -31,41 +31,41 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D) && isGrounded)
         {
-            player.AddForce(new Vector3(force, 0, 0));
+            player.AddForce(new Vector3(force, 0, 0) * Time.deltaTime * 150);
         }
         if (Input.GetKey(KeyCode.Q) && isGrounded)
         {
-            player.AddForce(new Vector3(-force, 0, 0));
+            player.AddForce(new Vector3(-force, 0, 0) * Time.deltaTime * 150);
         }
         if (Input.GetKey(KeyCode.Z) && isGrounded)
         {
-            player.AddForce(new Vector3(0, 0, force));
+            player.AddForce(new Vector3(0, 0, force) * Time.deltaTime * 150);
         }
         if (Input.GetKey(KeyCode.S) && isGrounded)
         {
-            player.AddForce(new Vector3(0, 0, -force));
+            player.AddForce(new Vector3(0, 0, -force) * Time.deltaTime * 150);
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            player.AddForce(new Vector3(0, upwardForce, 0), ForceMode.Impulse);
+            player.AddForce(new Vector3(0, upwardForce, 0) * Time.deltaTime * 200, ForceMode.Impulse);
             isGrounded = false;
         }
 
         if (Input.GetKey(KeyCode.D) && !isGrounded)
         {
-            player.AddForce(new Vector3(reducedForce, 0, 0));
+            player.AddForce(new Vector3(reducedForce, 0, 0) * Time.deltaTime * 100);
         }
         if (Input.GetKey(KeyCode.Q) && !isGrounded)
         {
-            player.AddForce(new Vector3(-reducedForce, 0, 0));
+            player.AddForce(new Vector3(-reducedForce, 0, 0) * Time.deltaTime * 100);
         }
         if (Input.GetKey(KeyCode.Z) && !isGrounded)
         {
-            player.AddForce(new Vector3(0, 0, reducedForce));
+            player.AddForce(new Vector3(0, 0, reducedForce) * Time.deltaTime * 100);
         }
         if (Input.GetKey(KeyCode.S) && !isGrounded)
         {
-            player.AddForce(new Vector3(0, 0, -reducedForce));
+            player.AddForce(new Vector3(0, 0, -reducedForce) * Time.deltaTime * 100);
         }
 
         if(player.transform.position.y < -yBoundry || player.transform.position.x > boundry || player.transform.position.x < -boundry || player.transform.position.z > boundry || player.transform.position.z < -boundry)

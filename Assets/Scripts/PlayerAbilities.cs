@@ -15,9 +15,9 @@ public class PlayerAbilities : MonoBehaviour
 
     private float cooldown = 8;
     private float cooldown2 = 4;
-    public float ability2Wait = 3;
+    public float ability2Wait = 2;
     private float cooldown3 = 10;
-    private float activeTime3 = 5;
+    private float activeTime3 = 2;
     public int health = 5;
 
     private bool isOnCooldown = false;
@@ -42,7 +42,7 @@ public class PlayerAbilities : MonoBehaviour
             StartCoroutine(AbilityActivity());
         }
 
-        if(Input.GetKeyDown(KeyCode.Mouse1) && !abilityIsActive && !isOnCooldown2)
+        if(Input.GetKeyDown(KeyCode.Mouse1) && !isOnCooldown2)
         {
             spawnLocation = transform.position;
             Instantiate(ability2Marker, new Vector3(spawnLocation.x, 0.5f, spawnLocation.z), transform.rotation);

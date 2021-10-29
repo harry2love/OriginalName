@@ -6,8 +6,8 @@ public class Ability3 : MonoBehaviour
 {
 
     // Start is called before the first frame update
-    private int seconds = 2;
-    private float sizeIncrease = 2;
+    
+    private float sizeIncrease = 2.5f;
     private Transform player;
     void Start()
     {
@@ -24,6 +24,7 @@ public class Ability3 : MonoBehaviour
     IEnumerator DestroyObject()
     {
         yield return new WaitForSeconds(GameObject.Find("Player").GetComponent<PlayerAbilities>().ability2Wait);
+        Destroy(gameObject);
 
     }
 }
