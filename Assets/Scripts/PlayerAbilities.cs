@@ -6,6 +6,7 @@ public class PlayerAbilities : MonoBehaviour
 {
 
     private Vector3 spawnLocation;
+    private Vector3 worldPosition;
     private Rigidbody player;
 
     public GameObject ability1;
@@ -17,7 +18,7 @@ public class PlayerAbilities : MonoBehaviour
     private float cooldown2 = 4;
     public float ability2Wait = 2;
     private float cooldown3 = 10;
-    private float activeTime3 = 2;
+    private float activeTime3 = 3;
     public int health = 5;
 
     private bool isOnCooldown = false;
@@ -34,6 +35,7 @@ public class PlayerAbilities : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetKeyDown(KeyCode.Mouse0) && !abilityIsActive && !isOnCooldown)
         {
             Instantiate(ability1, new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
@@ -44,7 +46,7 @@ public class PlayerAbilities : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse1) && !isOnCooldown2)
         {
-            spawnLocation = transform.position;
+            spawnLocation = worldPosition;
             Instantiate(ability2Marker, new Vector3(spawnLocation.x, 0.5f, spawnLocation.z), transform.rotation);
             isOnCooldown2 = true;
             StartCoroutine(AbilityActivity2());
