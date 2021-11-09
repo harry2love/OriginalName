@@ -394,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578973757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.32, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -433,6 +433,7 @@ MonoBehaviour:
   ability3: {fileID: 3396527383827113212, guid: 42d8bff2201b08944818ee34dd13d7d8, type: 3}
   ability2Wait: 3
   health: 5
+  disableHits: 0
   abilityIsActive: 0
 --- !u!1 &705507993
 GameObject:

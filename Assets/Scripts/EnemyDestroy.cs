@@ -30,10 +30,11 @@ public class EnemyDestroy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && !GameObject.Find("Player").GetComponent<PlayerAbilities>().disableHits)
         {
             GameObject.Find("GameManager").GetComponent<ScoreManager>().DeductScore(10);
             Destroy(gameObject);
         }
+
     }
 }

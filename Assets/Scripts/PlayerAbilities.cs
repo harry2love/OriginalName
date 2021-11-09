@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerAbilities : MonoBehaviour
 {
 
-    private Vector3 spawnLocation;
-    private Vector3 worldPosition;
+    private Vector3 worldPos;
     private Rigidbody player;
 
     public GameObject ability1;
@@ -19,12 +18,15 @@ public class PlayerAbilities : MonoBehaviour
     public float ability2Wait = 2;
     private float cooldown3 = 10;
     private float activeTime3 = 3;
+    private float cooldown4 = 5;
+    private float activeTime4 = 5;
     public int health = 5;
 
     private bool isOnCooldown = false;
     private bool isOnCooldown2 = false;
     private bool isOnCooldown3 = false;
     private bool isOnCooldown4 = false;
+    public bool disableHits = false;
     public bool abilityIsActive = false;
     // Start is called before the first frame update
     void Start()
@@ -35,7 +37,7 @@ public class PlayerAbilities : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
         if (Input.GetKeyDown(KeyCode.Mouse0) && !abilityIsActive && !isOnCooldown)
         {
             Instantiate(ability1, new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
@@ -46,8 +48,10 @@ public class PlayerAbilities : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse1) && !isOnCooldown2)
         {
-            spawnLocation = worldPosition;
-            Instantiate(ability2Marker, new Vector3(spawnLocation.x, 0.5f, spawnLocation.z), transform.rotation);
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.transform.position.y;
+            worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+            Instantiate(ability2Marker, new Vector3(worldPos.x, 0.5f, worldPos.z), transform.rotation);
             isOnCooldown2 = true;
             StartCoroutine(AbilityActivity2());
         }
@@ -59,9 +63,9 @@ public class PlayerAbilities : MonoBehaviour
             StartCoroutine(AbilityActivity3());
         }
 
-        if(Input.GetKeyDown(KeyCode.F) && abilityIsActive && !isOnCooldown4)
+        if(Input.GetKeyDown(KeyCode.E) && !abilityIsActive && !isOnCooldown4)
         {
-
+            Debug.Log("no");
             abilityIsActive = true;
             isOnCooldown4 = true;
             StartCoroutine(AbilityActivity4());
@@ -85,7 +89,7 @@ public class PlayerAbilities : MonoBehaviour
     IEnumerator AbilityActivity2()
     {
         yield return new WaitForSeconds(ability2Wait);
-        Instantiate(ability2, new Vector3(spawnLocation.x, 0.5f, spawnLocation.z), transform.rotation);
+        Instantiate(ability2, new Vector3(worldPos.x, 0.5f, worldPos.z), transform.rotation);
         yield return new WaitForSeconds(cooldown2);
         isOnCooldown2 = false;
 
@@ -104,6 +108,13 @@ public class PlayerAbilities : MonoBehaviour
 
     IEnumerator AbilityActivity4()
     {
-        yield return new WaitForSeconds(10);
+        Debug.Log("Yes");
+        disableHits = true;
+        yield return new WaitForSeconds(activeTime4);
+        disableHits = false;
+        CooldownRemover();
+        yield return new WaitForSeconds(cooldown4);
+        isOnCooldown4 = false;
+
     }
 }

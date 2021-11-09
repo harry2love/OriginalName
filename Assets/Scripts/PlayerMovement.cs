@@ -15,9 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private float yBoundry = 10;
     private float force = 12;
     private float reducedForce = 8;
-    private float upwardForce = 20;
+    private float upwardForce = 15;
 
-    private bool isGrounded = true;
+    private bool isGrounded = false;
     
     // Start is called before the first frame update
     void Start()
@@ -94,10 +94,6 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.name == "Floor")
         {
             isGrounded = true;
-        }
-        if(collision.gameObject.tag == "enemy")
-        {
-            GameObject.Find("GameManager").GetComponent<ScoreManager>().DeductScore(10);
         }
     }
 }
