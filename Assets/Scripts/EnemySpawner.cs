@@ -27,27 +27,31 @@ public class EnemySpawner : MonoBehaviour
                 {
                     Instantiate(enemy, new Vector3(Random.Range(40, 50), 0, Random.Range(40, 50)), transform.rotation);
                 }
+                Debug.Log("1");
             }
             else if(maxRange == 2)
             {
                 for (int i = 0; i < maxEnemies; i++)
                 {
-                    Instantiate(enemy, new Vector3(Random.Range(-40, 50), 0, Random.Range(-40, 50)), transform.rotation);
+                    Instantiate(enemy, new Vector3(Random.Range(40, 50), 0, Random.Range(-50, -40)), transform.rotation);
                 }
+                Debug.Log("2");
             }
             else if(maxRange == 3)
             {
                 for (int i = 0; i < maxEnemies; i++)
                 {
-                    Instantiate(enemy, new Vector3(Random.Range(40, -50), 0, Random.Range(40, -50)), transform.rotation);
+                    Instantiate(enemy, new Vector3(Random.Range(-50, -40), 0, Random.Range(-50, -40)), transform.rotation);
                 }
+                Debug.Log("3");
             }
             else if(maxRange == 4)
             {
                 for (int i = 0; i < maxEnemies; i++)
                 {
-                    Instantiate(enemy, new Vector3(Random.Range(-40, -50), 0, Random.Range(-40, -50)), transform.rotation);
+                    Instantiate(enemy, new Vector3(Random.Range(-50, -40), 0, Random.Range(40, 50)), transform.rotation);
                 }
+                Debug.Log("4");
             }
             isOnCooldown = true;
             StartCoroutine(SpawnCooldown());

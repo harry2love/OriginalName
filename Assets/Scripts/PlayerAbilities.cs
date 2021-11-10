@@ -16,16 +16,19 @@ public class PlayerAbilities : MonoBehaviour
     private float cooldown = 8;
     private float cooldown2 = 4;
     public float ability2Wait = 2;
+
     private float cooldown3 = 10;
     private float activeTime3 = 3;
     private float cooldown4 = 5;
     private float activeTime4 = 5;
+
     public int health = 5;
 
     private bool isOnCooldown = false;
     private bool isOnCooldown2 = false;
     private bool isOnCooldown3 = false;
     private bool isOnCooldown4 = false;
+
     public bool disableHits = false;
     public bool abilityIsActive = false;
     // Start is called before the first frame update
@@ -56,17 +59,14 @@ public class PlayerAbilities : MonoBehaviour
             StartCoroutine(AbilityActivity2());
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isOnCooldown3)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !abilityIsActive && !isOnCooldown3)
         {
-
             isOnCooldown3 = true;
             StartCoroutine(AbilityActivity3());
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && !abilityIsActive && !isOnCooldown4)
+        if(Input.GetKeyDown(KeyCode.E) && !isOnCooldown4)
         {
-            Debug.Log("no");
-            abilityIsActive = true;
             isOnCooldown4 = true;
             StartCoroutine(AbilityActivity4());
         }
@@ -82,21 +82,23 @@ public class PlayerAbilities : MonoBehaviour
 
     IEnumerator AbilityActivity()
     {
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareAbility(ScoreManager.activeAbility.Spin);
         yield return new WaitForSeconds(cooldown);
         isOnCooldown = false;
     }
 
     IEnumerator AbilityActivity2()
     {
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareBomb();
         yield return new WaitForSeconds(ability2Wait);
         Instantiate(ability2, new Vector3(worldPos.x, 0.5f, worldPos.z), transform.rotation);
         yield return new WaitForSeconds(cooldown2);
         isOnCooldown2 = false;
-
     }
     
     IEnumerator AbilityActivity3()
     {
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareAbility(ScoreManager.activeAbility.Explosion);
         player.constraints = RigidbodyConstraints.FreezeAll;
         yield return new WaitForSeconds(activeTime3);
         Instantiate(ability3, transform.position, transform.rotation);
@@ -108,13 +110,12 @@ public class PlayerAbilities : MonoBehaviour
 
     IEnumerator AbilityActivity4()
     {
-        Debug.Log("Yes");
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareFortify();
         disableHits = true;
         yield return new WaitForSeconds(activeTime4);
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().RemoveFortify();
         disableHits = false;
-        CooldownRemover();
         yield return new WaitForSeconds(cooldown4);
         isOnCooldown4 = false;
-
     }
 }

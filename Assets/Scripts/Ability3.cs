@@ -24,6 +24,7 @@ public class Ability3 : MonoBehaviour
     IEnumerator DestroyObject()
     {
         yield return new WaitForSeconds(GameObject.Find("Player").GetComponent<PlayerAbilities>().ability2Wait);
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().RemoveAbility();
         Destroy(gameObject);
 
     }

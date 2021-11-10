@@ -23,7 +23,7 @@ public class Ability1 : MonoBehaviour
     IEnumerator DestroyObject()
     {
         yield return new WaitForSeconds(seconds);
-        
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().RemoveAbility();
         Destroy(gameObject);
         GameObject.Find("Player").GetComponent<PlayerAbilities>().CooldownRemover();
     }
