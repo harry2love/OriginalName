@@ -96,4 +96,21 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "CooldownPowerUp")
+        {
+            GetComponent<PlayerAbilities>().CooldownReset();
+        }
+        else if(other.gameObject.tag == "FreezePowerUp")
+        {
+            GameObject.Find("GameManager").GetComponent<EnemySpawner>().SetFreezeActive();
+        }
+        else if(other.gameObject.tag == "HealthPowerUp")
+        {
+            GameObject.Find("GameManager").GetComponent<ScoreManager>().AddHealth(1);
+        }
+        Destroy(other.gameObject);
+    }
 }

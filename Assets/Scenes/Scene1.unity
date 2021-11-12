@@ -1736,9 +1736,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30e40a3a8cd3cd478dd0fbb4af3c1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 0}
-  SpawnFreeze: {fileID: 0}
-  CooldownReset: {fileID: 0}
+  Health: {fileID: 1836121145546967382, guid: c3c0e9c648e9bea4f8f240ee3496a783, type: 3}
+  SpawnFreeze: {fileID: 8297810798739849941, guid: cfd7db712c9dac649bd8d7c20d17303d, type: 3}
+  CooldownReset: {fileID: 1740348129955576128, guid: f06486e2412f664449bfd4541bf939e3, type: 3}
 --- !u!1 &1788087267
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,10 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
     private int maxEnemies = 5;
+    private float activeTime = 5;
     private float cooldownTimer = 5;
     private bool isOnCooldown = false;
+    private bool FreezeIsActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("Enemy").Length <= maxEnemies && !isOnCooldown)
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length <= maxEnemies && !isOnCooldown && !FreezeIsActive)
         {
             int maxRange = Random.Range(1, 4);
 
@@ -58,6 +60,17 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void SetFreezeActive()
+    {
+        FreezeIsActive = true;
+        StartCoroutine(DisableFreeze());
+    }
+
+    IEnumerator DisableFreeze()
+    {
+        yield return new WaitForSeconds(activeTime);
+        FreezeIsActive = false;
+    }
     IEnumerator SpawnCooldown()
     {
         maxEnemies = maxEnemies + 5;

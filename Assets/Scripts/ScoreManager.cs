@@ -52,6 +52,11 @@ public class ScoreManager : MonoBehaviour
         health = health - 1;
     }
 
+    public void AddHealth(int health)
+    {
+        this.health = this.health + health;
+    }
+
     public void DeclareAbility(activeAbility ability)
     {
         if(ability == activeAbility.Explosion)

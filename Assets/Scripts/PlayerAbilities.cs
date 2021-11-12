@@ -80,6 +80,15 @@ public class PlayerAbilities : MonoBehaviour
         abilityIsActive = false;
     }
 
+    public void CooldownReset()
+    {
+        isOnCooldown = false;
+        isOnCooldown2 = false;
+        isOnCooldown3 = false;
+        isOnCooldown4 = false;
+        abilityIsActive = false;
+}
+
     IEnumerator AbilityActivity()
     {
         GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareAbility(ScoreManager.activeAbility.Spin);
