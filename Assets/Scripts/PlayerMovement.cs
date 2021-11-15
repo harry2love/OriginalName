@@ -102,15 +102,18 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "CooldownPowerUp")
         {
             GetComponent<PlayerAbilities>().CooldownReset();
+            Destroy(other.gameObject);
         }
         else if(other.gameObject.tag == "FreezePowerUp")
         {
             GameObject.Find("GameManager").GetComponent<EnemySpawner>().SetFreezeActive();
+            Destroy(other.gameObject);
         }
         else if(other.gameObject.tag == "HealthPowerUp")
         {
             GameObject.Find("GameManager").GetComponent<ScoreManager>().AddHealth(1);
+            Destroy(other.gameObject);
         }
-        Destroy(other.gameObject);
+        
     }
 }

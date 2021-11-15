@@ -24,7 +24,8 @@ public class Ability1 : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         GameObject.Find("GameManager").GetComponent<ScoreManager>().RemoveAbility();
-        Destroy(gameObject);
         GameObject.Find("Player").GetComponent<PlayerAbilities>().CooldownRemover();
+        Destroy(gameObject);
+        Debug.Log("kapot");
     }
 }
