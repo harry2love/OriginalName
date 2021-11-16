@@ -10,6 +10,8 @@ public class PowerupSpawner : MonoBehaviour
     public GameObject Health;
     public GameObject SpawnFreeze;
     public GameObject CooldownReset;
+
+    public float cooldown = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class PowerupSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator AbilitySpawner()
@@ -30,6 +32,7 @@ public class PowerupSpawner : MonoBehaviour
         if(powerups == 1)
         {
             Instantiate(Health, location, transform.rotation);
+            cooldown = 0;
         }
         else if(powerups == 2)
         {

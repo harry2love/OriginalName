@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
     private int maxEnemies = 5;
+    private int enemyIncrease;
     private float activeTime = 5;
     private float cooldownTimer = 5;
     private bool isOnCooldown = false;
@@ -13,7 +14,18 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (GameObject.Find("ButtonScripts").GetComponent<StartScript>().difficulty == 1)
+        {
+            enemyIncrease = 3;
+        }
+        else if(GameObject.Find("ButtonScripts").GetComponent<StartScript>().difficulty == 2)
+        {
+            enemyIncrease = 5;
+        }
+        else if(GameObject.Find("ButtonScripts").GetComponent<StartScript>().difficulty == 3)
+        {
+            enemyIncrease = 7;
+        }
     }
 
     // Update is called once per frame
@@ -73,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
     }
     IEnumerator SpawnCooldown()
     {
-        maxEnemies = maxEnemies + 5;
+        maxEnemies = maxEnemies + enemyIncrease;
         yield return new WaitForSeconds(cooldownTimer);
         isOnCooldown = false;
     }

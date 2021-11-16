@@ -98,11 +98,12 @@ public class PlayerAbilities : MonoBehaviour
 
     IEnumerator AbilityActivity2()
     {
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareBomb();
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().RemoveBomb();
         yield return new WaitForSeconds(ability2Wait);
         Instantiate(ability2, new Vector3(worldPos.x, 0.5f, worldPos.z), transform.rotation);
         yield return new WaitForSeconds(cooldown2);
         isOnCooldown2 = false;
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareBomb();
     }
     
     IEnumerator AbilityActivity3()
@@ -119,12 +120,13 @@ public class PlayerAbilities : MonoBehaviour
 
     IEnumerator AbilityActivity4()
     {
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareFortify();
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().SetFortifyActive();
         disableHits = true;
         yield return new WaitForSeconds(activeTime4);
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().RemoveFortify();
         disableHits = false;
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().RemoveFortify();
         yield return new WaitForSeconds(cooldown4);
         isOnCooldown4 = false;
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().DeclareFortify();
     }
 }

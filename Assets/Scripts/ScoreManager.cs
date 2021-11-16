@@ -69,7 +69,7 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Third option");
+            Debug.Log("Third ability, help");
         }
     }
 
@@ -88,6 +88,10 @@ public class ScoreManager : MonoBehaviour
         fortifyDisplay.text = "";
     }
 
+    public void SetFortifyActive()
+    {
+        fortifyDisplay.text = "ACTIVE";
+    }
 
     public void DeclareBomb()
     {
