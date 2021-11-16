@@ -26,6 +26,5 @@ public class Ability1 : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<ScoreManager>().RemoveAbility();
         GameObject.Find("Player").GetComponent<PlayerAbilities>().CooldownRemover();
         Destroy(gameObject);
-        Debug.Log("kapot");
     }
 }

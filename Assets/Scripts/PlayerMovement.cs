@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private TextMeshProUGUI pauseDisplay;
+
     public Material upMat;
     public Material baseMat;
     public Material abilityActiveMat;
@@ -23,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         player = GetComponent<Rigidbody>();
-
+        pauseDisplay = GameObject.Find("PauseDisplay").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -86,7 +89,17 @@ public class PlayerMovement : MonoBehaviour
         {
             player.GetComponent<MeshRenderer>().material = abilityActiveMat;
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            pauseDisplay.text = "Paused";
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            pauseDisplay.text = "";
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -18,13 +18,11 @@ public class StartScript : MonoBehaviour
         
     }
 
-    public void StartGame()
+    public void StartGame(int number)
     {
+        difficulty = number;
+        GameObject.Find("ButtonScripts").GetComponent<StartScript>().difficulty = number;
         SceneManager.LoadScene("Scene1");
     }
 
-    public void SetDifficulty(int number)
-    {
-        difficulty = number;
-    }
 }
