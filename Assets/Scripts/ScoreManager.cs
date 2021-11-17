@@ -34,7 +34,7 @@ public class ScoreManager : MonoBehaviour
         if (health <= 0)
         {
             Destroy(GameObject.Find("Player"));
-            SceneManager.LoadScene("Scene1");
+            SceneManager.LoadScene("GameOverScreen");
         }
 
         

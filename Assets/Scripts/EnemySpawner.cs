@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
-    public int difficulty;
     private int maxEnemies = 5;
     private int enemyIncrease;
     private float activeTime = 5;

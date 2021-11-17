@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartScript : MonoBehaviour
+public class EndScript : MonoBehaviour
 {
-    public int difficulty = 1;
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        
     }
 
     // Update is called once per frame
@@ -18,11 +17,18 @@ public class StartScript : MonoBehaviour
         
     }
 
-    public void StartGame(int number)
+    public void Retry()
     {
-        difficulty = number;
-        GameObject.Find("ButtonScripts").GetComponent<StartScript>().difficulty = number;
         SceneManager.LoadScene("Scene1");
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("StartScreen");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

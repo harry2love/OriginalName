@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(player.transform.position.y < -yBoundry || player.transform.position.x > boundry || player.transform.position.x < -boundry || player.transform.position.z > boundry || player.transform.position.z < -boundry)
         {
-            SceneManager.LoadScene("Scene1");
+            SceneManager.LoadScene("GameOverScreen");
         }
 
 
